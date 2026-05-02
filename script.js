@@ -1,24 +1,23 @@
+const responses = {
+  vote: "To vote, you must be registered and carry a valid ID.",
+  evm: "EVM is an Electronic Voting Machine used in elections.",
+  registration: "Register online through official election portals.",
+  process: "Election process includes registration, nomination, campaigning, voting, and counting.",
+  results: "Votes are counted and results are declared by election authorities."
+};
+
 function getAnswer() {
   let input = document.getElementById("userInput").value.toLowerCase();
-  let response = "";
+  let response = "Sorry, I don't understand. Try asking about voting, EVM, or process.";
 
-  if (input.includes("vote")) {
-    response = "To vote, you must be registered and carry a valid ID.";
-  } 
-  else if (input.includes("who can vote")) {
-    response = "Any citizen above 18 years of age can vote.";
-  } 
-  else if (input.includes("evm")) {
-    response = "EVM stands for Electronic Voting Machine.";
-  } 
-  else if (input.includes("registration")) {
-    response = "You can register online on official election portals.";
-  } 
-  else {
-    response = "Try asking about voting, EVM, or registration.";
+  for (let key in responses) {
+    if (input.includes(key)) {
+      response = responses[key];
+      break;
+    }
   }
 
   document.getElementById("chatBox").innerHTML += 
-    "<p><b>You:</b> " + input + "</p>" +
-    "<p><b>Bot:</b> " + response + "</p>";
+    `<p><b>You:</b> ${input}</p>
+     <p><b>Bot:</b> ${response}</p>`;
 }
